@@ -1,0 +1,322 @@
+# Complete Postman GraphQL API Testing Format
+
+## Setup
+
+1. Create a new Postman collection: "GraphQL API Tests"
+2. Set up environment variables:
+   - `base_url`: Your GraphQL endpoint (e.g., `http://localhost:4000/graphql`)
+   - `access_token`: To store the JWT for authenticated requests
+
+## General Request Setup
+
+For each request:
+1. Method: POST
+2. URL: {{base_url}}
+3. Headers:
+   - Content-Type: application/json
+   - Authorization: Bearer {{access_token}} (for authenticated requests)
+
+## Queries
+
+### 1. getUser
+
+Body:
+```json
+{
+  "query": "query GetUser($id: ID!) { getUser(id: $id) { id username email role profilePicture bio } }",
+  "variables": {
+    "id": "1"
+  }
+}
+```
+
+### 2. getProject
+
+Body:
+```json
+{
+  "query": "query GetProject($id: ID!) { getProject(id: $id) { id name description owner { id username } collaborators { id username } } }",
+  "variables": {
+    "id": "1"
+  }
+}
+```
+
+### 3. getInstitution
+
+Body:
+```json
+{
+  "query": "query GetInstitution($id: ID!) { getInstitution(id: $id) { id name type members { id username } } }",
+  "variables": {
+    "id": "1"
+  }
+}
+```
+
+### 4. getFeed
+
+Body:
+```json
+{
+  "query": "query GetFeed($userId: ID!) { getFeed(userId: $userId) { id content createdAt author { id username } likesCount comments { id content author { id username } } } }",
+  "variables": {
+    "userId": "1"
+  }
+}
+```
+
+### 5. getUserProjects
+
+Body:
+```json
+{
+  "query": "query GetUserProjects($userId: ID!) { getUserProjects(userId: $userId) { id name description } }",
+  "variables": {
+    "userId": "1"
+  }
+}
+```
+
+### 6. getUserInstitutions
+
+Body:
+```json
+{
+  "query": "query GetUserInstitutions($userId: ID!) { getUserInstitutions(userId: $userId) { id name type } }",
+  "variables": {
+    "userId": "1"
+  }
+}
+```
+
+### 7. getPostLikes
+
+Body:
+```json
+{
+  "query": "query GetPostLikes($postId: ID!) { getPostLikes(postId: $postId) { id username } }",
+  "variables": {
+    "postId": "1"
+  }
+}
+```
+
+## Mutations
+
+### 1. createUser
+
+Body:
+```json
+{
+  "query": "mutation CreateUser($username: String!, $email: String!, $password: String!, $role: String) { createUser(username: $username, email: $email, password: $password, role: $role) { id username email role } }",
+  "variables": {
+    "username": "newuser",
+    "email": "newuser@example.com",
+    "password": "password123",
+    "role": "USER"
+  }
+}
+```
+
+### 2. login
+
+Body:
+```json
+{
+  "query": "mutation Login($email: String!, $password: String!) { login(email: $email, password: $password) { accessToken refreshToken user { id username email } } }",
+  "variables": {
+    "email": "newuser@example.com",
+    "password": "password123"
+  }
+}
+```
+
+After successful login, set the `access_token` environment variable with the returned `accessToken`.
+
+### 3. refreshToken
+
+Body:
+```json
+{
+  "query": "mutation RefreshToken($refreshToken: String!) { refreshToken(refreshToken: $refreshToken) { accessToken refreshToken } }",
+  "variables": {
+    "refreshToken": "your_refresh_token_here"
+  }
+}
+```
+
+### 4. logout
+
+Body:
+```json
+{
+  "query": "mutation { logout }"
+}
+```
+
+### 5. updateUser
+
+Body:
+```json
+{
+  "query": "mutation UpdateUser($id: ID!, $username: String, $email: String, $bio: String) { updateUser(id: $id, username: $username, email: $email, bio: $bio) { id username email bio } }",
+  "variables": {
+    "id": "1",
+    "username": "updateduser",
+    "email": "updated@example.com",
+    "bio": "This is an updated bio"
+  }
+}
+```
+
+### 6. createProject
+
+Body:
+```json
+{
+  "query": "mutation CreateProject($name: String!, $description: String!) { createProject(name: $name, description: $description) { id name description owner { id username } } }",
+  "variables": {
+    "name": "New Project",
+    "description": "This is a new project description"
+  }
+}
+```
+
+### 7. addCollaborator
+
+Body:
+```json
+{
+  "query": "mutation AddCollaborator($projectId: ID!, $userId: ID!) { addCollaborator(projectId: $projectId, userId: $userId) { id name collaborators { id username } } }",
+  "variables": {
+    "projectId": "1",
+    "userId": "2"
+  }
+}
+```
+
+### 8. createInstitution
+
+Body:
+```json
+{
+  "query": "mutation CreateInstitution($name: String!, $type: String!) { createInstitution(name: $name, type: $type) { id name type } }",
+  "variables": {
+    "name": "New Institution",
+    "type": "University"
+  }
+}
+```
+
+### 9. joinInstitution
+
+Body:
+```json
+{
+  "query": "mutation JoinInstitution($institutionId: ID!) { joinInstitution(institutionId: $institutionId) { id name members { id username } } }",
+  "variables": {
+    "institutionId": "1"
+  }
+}
+```
+
+### 10. createPost
+
+Body:
+```json
+{
+  "query": "mutation CreatePost($content: String!) { createPost(content: $content) { id content createdAt author { id username } } }",
+  "variables": {
+    "content": "This is a new post"
+  }
+}
+```
+
+### 11. addComment
+
+Body:
+```json
+{
+  "query": "mutation AddComment($postId: ID!, $content: String!) { addComment(postId: $postId, content: $content) { id content author { id username } post { id content } } }",
+  "variables": {
+    "postId": "1",
+    "content": "This is a new comment"
+  }
+}
+```
+
+### 12. addConnection
+
+Body:
+```json
+{
+  "query": "mutation AddConnection($userId: ID!) { addConnection(userId: $userId) { id username connections { id username } newConnectionCreated } }",
+  "variables": {
+    "userId": "2"
+  }
+}
+```
+
+### 13. promoteToAdmin
+
+Body:
+```json
+{
+  "query": "mutation PromoteToAdmin($userId: ID!) { promoteToAdmin(userId: $userId) { id username role } }",
+  "variables": {
+    "userId": "2"
+  }
+}
+```
+
+### 14. resetSequences
+
+Body:
+```json
+{
+  "query": "mutation { resetSequences }"
+}
+```
+
+### 15. likePost
+
+Body:
+```json
+{
+  "query": "mutation LikePost($postId: ID!) { likePost(postId: $postId) { id content likesCount likes { id username } } }",
+  "variables": {
+    "postId": "1"
+  }
+}
+```
+
+### 16. unlikePost
+
+Body:
+```json
+{
+  "query": "mutation UnlikePost($postId: ID!) { unlikePost(postId: $postId) { id content likesCount likes { id username } } }",
+  "variables": {
+    "postId": "1"
+  }
+}
+```
+
+## Testing Process
+
+1. Start with unauthenticated queries and mutations (e.g., createUser, login).
+2. After successful login, use the returned access token for authenticated requests.
+3. Test each query and mutation with both valid and invalid inputs.
+4. Verify that the responses match the expected structure and data.
+5. For mutations, follow up with relevant queries to ensure the changes were applied correctly.
+6. Test error scenarios by providing invalid data or attempting unauthorized actions.
+
+## Automation in Postman
+
+1. Use the "Tests" tab in each request to write JavaScript assertions.
+2. Create a collection-level pre-request script to handle authentication flow.
+3. Use environment variables to store and share data between requests (e.g., newly created user IDs, post IDs).
+4. Set up a Postman Monitor to run your collection at regular intervals and alert you of any failures.
+
+Remember to update these tests as your API evolves, and consider integrating Postman tests into your CI/CD pipeline for continuous API validation.

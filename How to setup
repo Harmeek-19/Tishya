@@ -1,0 +1,716 @@
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql --version
+Command 'psql' not found, but can be installed with:
+sudo apt install postgresql-client-common
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -U harmeek
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: No such file or directory
+        Is the server running locally and accepting connections on that socket?
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -v
+/usr/lib/postgresql/16/bin/psql: option requires an argument -- 'v'
+psql: hint: Try "psql --help" for more information.
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql --version
+psql (PostgreSQL) 16.4 (Ubuntu 16.4-0ubuntu0.24.04.2)
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ sudo systemctl status postgresql
+[sudo] password for harmeek: 
+Unit postgresql.service could not be found.
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ postgres
+Command 'postgres' not found, did you mean:
+  command 'postgrey' from deb postgrey (1.37-2)
+Try: sudo apt install <deb name>
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ sudo -u postgres psql
+sudo: unknown user postgres
+sudo: error initializing audit plugin sudoers_audit
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ sudo systemctl status postgresql
+Unit postgresql.service could not be found.
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ sudo apt install postgresql postgresql-contrib
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libcommon-sense-perl libjson-perl libjson-xs-perl libtypes-serialiser-perl
+  postgresql-16 postgresql-common
+Suggested packages:
+  postgresql-doc
+The following NEW packages will be installed:
+  libcommon-sense-perl libjson-perl libjson-xs-perl libtypes-serialiser-perl
+  postgresql postgresql-16 postgresql-common postgresql-contrib
+0 upgraded, 8 newly installed, 0 to remove and 7 not upgraded.
+Need to get 15.9 MB of archives.
+After this operation, 46.1 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://in.archive.ubuntu.com/ubuntu noble/main amd64 libjson-perl all 4.10000-1 [81.9 kB]
+Get:2 http://in.archive.ubuntu.com/ubuntu noble-updates/main amd64 postgresql-common all 257build1.1 [161 kB]
+Get:3 http://in.archive.ubuntu.com/ubuntu noble/main amd64 libcommon-sense-perl amd64 3.75-3build3 [20.4 kB]
+Get:4 http://in.archive.ubuntu.com/ubuntu noble/main amd64 libtypes-serialiser-perl all 1.01-1 [11.6 kB]
+Get:5 http://in.archive.ubuntu.com/ubuntu noble/main amd64 libjson-xs-perl amd64 4.030-2build3 [83.6 kB]
+Get:6 http://in.archive.ubuntu.com/ubuntu noble-updates/main amd64 postgresql-16 amd64 16.4-0ubuntu0.24.04.2 [15.5 MB]
+Get:7 http://in.archive.ubuntu.com/ubuntu noble-updates/main amd64 postgresql all 16+257build1.1 [11.6 kB]
+Get:8 http://in.archive.ubuntu.com/ubuntu noble-updates/main amd64 postgresql-contrib all 16+257build1.1 [11.6 kB]
+Fetched 15.9 MB in 8s (1,930 kB/s)                                                  
+Preconfiguring packages ...
+Selecting previously unselected package libjson-perl.
+(Reading database ... 227031 files and directories currently installed.)
+Preparing to unpack .../0-libjson-perl_4.10000-1_all.deb ...
+Unpacking libjson-perl (4.10000-1) ...
+Selecting previously unselected package postgresql-common.
+Preparing to unpack .../1-postgresql-common_257build1.1_all.deb ...
+Adding 'diversion of /usr/bin/pg_config to /usr/bin/pg_config.libpq-dev by postgresql-common'
+Unpacking postgresql-common (257build1.1) ...
+Selecting previously unselected package libcommon-sense-perl:amd64.
+Preparing to unpack .../2-libcommon-sense-perl_3.75-3build3_amd64.deb ...
+Unpacking libcommon-sense-perl:amd64 (3.75-3build3) ...
+Selecting previously unselected package libtypes-serialiser-perl.
+Preparing to unpack .../3-libtypes-serialiser-perl_1.01-1_all.deb ...
+Unpacking libtypes-serialiser-perl (1.01-1) ...
+Selecting previously unselected package libjson-xs-perl.
+Preparing to unpack .../4-libjson-xs-perl_4.030-2build3_amd64.deb ...
+Unpacking libjson-xs-perl (4.030-2build3) ...
+Selecting previously unselected package postgresql-16.
+Preparing to unpack .../5-postgresql-16_16.4-0ubuntu0.24.04.2_amd64.deb ...
+Unpacking postgresql-16 (16.4-0ubuntu0.24.04.2) ...
+Selecting previously unselected package postgresql.
+Preparing to unpack .../6-postgresql_16+257build1.1_all.deb ...
+Unpacking postgresql (16+257build1.1) ...
+Selecting previously unselected package postgresql-contrib.
+Preparing to unpack .../7-postgresql-contrib_16+257build1.1_all.deb ...
+Unpacking postgresql-contrib (16+257build1.1) ...
+Setting up libcommon-sense-perl:amd64 (3.75-3build3) ...
+Setting up libtypes-serialiser-perl (1.01-1) ...
+Setting up libjson-perl (4.10000-1) ...
+Setting up libjson-xs-perl (4.030-2build3) ...
+Setting up postgresql-common (257build1.1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend requires a screen at least 13 lines tall and 31 columns wide.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/postgresql-common/createcluster.conf with new version
+Building PostgreSQL dictionaries from installed myspell/hunspell packages...
+  en_au
+  en_ca
+  en_gb
+  en_us
+  en_za
+  fr
+Removing obsolete dictionary files:
+Created symlink /etc/systemd/system/multi-user.target.wants/postgresql.service → /usr/lib/systemd/system/postgresql.service.
+Setting up postgresql-16 (16.4-0ubuntu0.24.04.2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (Dialog frontend requires a screen at least 13 lines tall and 31 columns wide.)
+debconf: falling back to frontend: Readline
+Creating new PostgreSQL cluster 16/main ...
+/usr/lib/postgresql/16/bin/initdb -D /var/lib/postgresql/16/main --auth-local peer --auth-host scram-sha-256 --no-instructions
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_US.UTF-8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/16/main ... ok
+creating subdirectories ... ok
+selecting dynamic shared memory implementation ... posix
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default time zone ... Asia/Kolkata
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+update-alternatives: updating alternative /usr/share/postgresql/16/man/man1/psql.1.gz because link group psql.1.gz has changed slave links
+Setting up postgresql-contrib (16+257build1.1) ...
+Setting up postgresql (16+257build1.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ sudo systemctl status postgresql
+● postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/usr/lib/systemd/system/postgresql.service; enabled; preset: en>
+     Active: active (exited) since Tue 2024-10-01 11:33:29 IST; 11s ago
+   Main PID: 14371 (code=exited, status=0/SUCCESS)
+        CPU: 1ms
+
+Oct 01 11:33:29 marcos systemd[1]: Starting postgresql.service - PostgreSQL RDBMS...
+Oct 01 11:33:29 marcos systemd[1]: Finished postgresql.service - PostgreSQL RDBMS.
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -U harmeek
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  role "harmeek" does not exist
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ sudo -u postgres psql
+psql (16.4 (Ubuntu 16.4-0ubuntu0.24.04.2))
+Type "help" for help.
+
+postgres=# CREATE ROLE harmeek WITH LOGIN PASSWORD 'itsokay';
+CREATE ROLE
+postgres=# ALTER ROLE harmeek WITH SUPERUSER;
+ALTER ROLE
+postgres=# \q
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -U harmeek
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "harmeek" does not exist
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -u harmeek
+/usr/lib/postgresql/16/bin/psql: invalid option -- 'u'
+psql: hint: Try "psql --help" for more information.
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -U harmeek -d social_network_db
+psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "social_network_db" does not exist
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ sudo -u harmeek createdb social_network_db
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -d social_network_db
+psql (16.4 (Ubuntu 16.4-0ubuntu0.24.04.2))
+Type "help" for help.
+
+social_network_db=# \dt
+Did not find any relations.
+social_network_db=# \q
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run migrate
+npm ERR! Missing script: "migrate"
+npm ERR! 
+npm ERR! To see a list of scripts, run:
+npm ERR!   npm run
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/harmeek/.npm/_logs/2024-10-01T06_09_08_829Z-debug-0.log
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run
+Lifecycle scripts included in social-network-backend@1.0.0:
+  test
+    echo "Error: no test specified" && exit 1
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run dev
+npm ERR! Missing script: "dev"
+npm ERR! 
+npm ERR! To see a list of scripts, run:
+npm ERR!   npm run
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/harmeek/.npm/_logs/2024-10-01T06_09_27_192Z-debug-0.log
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ ls -R > output.txt
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm init -y
+Wrote to /home/harmeek/Dev/Tishya/social-network-backend/package.json:
+
+{
+  "name": "social-network-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "graphql": "^16.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.12.0",
+    "redis": "^4.7.0",
+    "winston": "^3.14.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.4",
+    "supertest": "^7.0.0"
+  },
+  "description": ""
+}
+
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm install express apollo-server-express graphql pg redis bcrypt jsonwebtoken dotenv morgan winston
+npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm WARN deprecated npmlog@5.0.1: This package is no longer supported.
+npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm WARN deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm WARN deprecated gauge@3.0.2: This package is no longer supported.
+npm WARN deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+npm WARN deprecated apollo-server-types@3.8.0: The `apollo-server-types` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-datasource@3.3.2: The `apollo-datasource` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-server-plugin-base@3.7.2: The `apollo-server-plugin-base` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-server-errors@3.3.1: The `apollo-server-errors` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-server-env@4.2.1: The `apollo-server-env` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/utils.fetcher` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+npm WARN deprecated apollo-reporting-protobuf@3.4.0: The `apollo-reporting-protobuf` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/usage-reporting-protobuf` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
+
+added 558 packages, and audited 559 packages in 39s
+
+54 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm install --save-dev nodemon jest supertest
+
+changed 1 package, and audited 559 packages in 2s
+
+54 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ systemctl status postgresql
+● postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/usr/lib/systemd/system/postgresql.service; enabled; preset: en>
+     Active: active (exited) since Tue 2024-10-01 11:33:29 IST; 15min ago
+   Main PID: 14371 (code=exited, status=0/SUCCESS)
+        CPU: 1ms
+
+Oct 01 11:33:29 marcos systemd[1]: Starting postgresql.service - PostgreSQL RDBMS...
+Oct 01 11:33:29 marcos systemd[1]: Finished postgresql.service - PostgreSQL RDBMS.
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run migrate
+npm ERR! Missing script: "migrate"
+npm ERR! 
+npm ERR! To see a list of scripts, run:
+npm ERR!   npm run
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/harmeek/.npm/_logs/2024-10-01T06_19_06_369Z-debug-0.log
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run migrate
+npm ERR! Missing script: "migrate"
+npm ERR! 
+npm ERR! To see a list of scripts, run:
+npm ERR!   npm run
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/harmeek/.npm/_logs/2024-10-01T06_19_45_672Z-debug-0.log
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run migrate
+npm ERR! Missing script: "migrate"
+npm ERR! 
+npm ERR! To see a list of scripts, run:
+npm ERR!   npm run
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/harmeek/.npm/_logs/2024-10-01T06_20_56_276Z-debug-0.log
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run migrate
+npm ERR! Missing script: "migrate"
+npm ERR! 
+npm ERR! To see a list of scripts, run:
+npm ERR!   npm run
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/harmeek/.npm/_logs/2024-10-01T06_23_24_837Z-debug-0.log
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cat package.json
+{
+  "name": "social-network-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "graphql": "^16.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.13.0",
+    "redis": "^4.7.0",
+    "winston": "^3.14.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "supertest": "^7.0.0"
+  },
+  "description": ""
+}
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run migrate
+
+> social-network-backend@1.0.0 migrate
+> node src/utils/runMigrations.js
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run dev
+
+> social-network-backend@1.0.0 dev
+> nodemon src/server.js
+
+[nodemon] 3.1.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node src/server.js`
+Failed to connect to PostgreSQL database: Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+    at /home/harmeek/Dev/Tishya/social-network-backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async connectDB (/home/harmeek/Dev/Tishya/social-network-backend/src/utils/db.js:14:5)
+    at async startServer (/home/harmeek/Dev/Tishya/social-network-backend/src/server.js:35:5)
+[nodemon] app crashed - waiting for file changes before starting...
+^C
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cat env
+cat: env: No such file or directory
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run dev
+
+> social-network-backend@1.0.0 dev
+> nodemon src/server.js
+
+[nodemon] 3.1.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node src/server.js`
+Failed to connect to PostgreSQL database: Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+    at /home/harmeek/Dev/Tishya/social-network-backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async connectDB (/home/harmeek/Dev/Tishya/social-network-backend/src/utils/db.js:14:5)
+    at async startServer (/home/harmeek/Dev/Tishya/social-network-backend/src/server.js:35:5)
+[nodemon] app crashed - waiting for file changes before starting...
+^C
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run migrate
+
+> social-network-backend@1.0.0 migrate
+> node src/utils/runMigrations.js
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run dev
+
+> social-network-backend@1.0.0 dev
+> nodemon src/server.js
+
+[nodemon] 3.1.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node src/server.js`
+Failed to connect to PostgreSQL database: Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+    at /home/harmeek/Dev/Tishya/social-network-backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async connectDB (/home/harmeek/Dev/Tishya/social-network-backend/src/utils/db.js:14:5)
+    at async startServer (/home/harmeek/Dev/Tishya/social-network-backend/src/server.js:35:5)
+[nodemon] app crashed - waiting for file changes before starting...
+^C
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cat src/utils/db.js 
+const { Pool } = require('pg');
+require('dotenv').config();
+
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
+
+const connectDB = async () => {
+  try {
+    await pool.connect();
+    console.log('Connected to PostgreSQL database');
+  } catch (error) {
+    console.error('Failed to connect to PostgreSQL database:', error);
+    process.exit(1);
+  }
+};
+
+module.exports = { connectDB, pool };harmeek@marcos:~/Dev/Tishya/social-network-backe
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ node testDbConnection.js
+node:internal/modules/cjs/loader:1137
+  throw err;
+  ^
+
+Error: Cannot find module '/home/harmeek/Dev/Tishya/social-network-backend/testDbConnection.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+    at Module._load (node:internal/modules/cjs/loader:975:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v18.19.1
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ ^C
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cd 
+node_modules/ src/          
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cd 
+node_modules/ src/          
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cd 
+node_modules/ src/          
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cd src/
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ ls
+middleware  migrations  resolvers  schema  server.js  testDbconnection.js  utils
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ node testDbConnection.js
+node:internal/modules/cjs/loader:1137
+  throw err;
+  ^
+
+Error: Cannot find module '/home/harmeek/Dev/Tishya/social-network-backend/src/testDbConnection.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+    at Module._load (node:internal/modules/cjs/loader:975:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v18.19.1
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ node testDbconnection.js
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ mv /home/harmeek/Dev/Tishya/social-network-backend/src/.env /home/harmeek/Dev/Tishya/social-network-backend/.env
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ node testDbConnection.js
+node:internal/modules/cjs/loader:1137
+  throw err;
+  ^
+
+Error: Cannot find module '/home/harmeek/Dev/Tishya/social-network-backend/src/testDbConnection.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+    at Module._load (node:internal/modules/cjs/loader:975:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v18.19.1
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ node testDbConnection.js
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ sudo systemctl status postgresql
+[sudo] password for harmeek: 
+● postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/usr/lib/systemd/system/postgresql.service; enabled; preset: en>
+     Active: active (exited) since Tue 2024-10-01 11:33:29 IST; 42min ago
+   Main PID: 14371 (code=exited, status=0/SUCCESS)
+        CPU: 1ms
+
+Oct 01 11:33:29 marcos systemd[1]: Starting postgresql.service - PostgreSQL RDBMS...
+Oct 01 11:33:29 marcos systemd[1]: Finished postgresql.service - PostgreSQL RDBMS.
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ sudo -u postgres psql -c "\du"
+                             List of roles
+ Role name |                         Attributes                         
+-----------+------------------------------------------------------------
+ harmeek   | Superuser
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ npm run dev
+
+> social-network-backend@1.0.0 dev
+> nodemon src/server.js
+
+[nodemon] 3.1.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node src/server.js`
+Failed to connect to PostgreSQL database: Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+    at /home/harmeek/Dev/Tishya/social-network-backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async connectDB (/home/harmeek/Dev/Tishya/social-network-backend/src/utils/db.js:14:5)
+    at async startServer (/home/harmeek/Dev/Tishya/social-network-backend/src/server.js:35:5)
+[nodemon] app crashed - waiting for file changes before starting...
+^C
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ npm start
+
+> social-network-backend@1.0.0 start
+> node src/server.js
+
+Failed to connect to PostgreSQL database: Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+    at /home/harmeek/Dev/Tishya/social-network-backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async connectDB (/home/harmeek/Dev/Tishya/social-network-backend/src/utils/db.js:14:5)
+    at async startServer (/home/harmeek/Dev/Tishya/social-network-backend/src/server.js:35:5)
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ ls -R > dir.txt
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ node src/testDbConnection.js
+node:internal/modules/cjs/loader:1137
+  throw err;
+  ^
+
+Error: Cannot find module '/home/harmeek/Dev/Tishya/social-network-backend/src/src/testDbConnection.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1134:15)
+    at Module._load (node:internal/modules/cjs/loader:975:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v18.19.1
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ cd ..
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ npm run dev
+
+> social-network-backend@1.0.0 dev
+> nodemon src/server.js
+
+[nodemon] 3.1.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node src/server.js`
+Failed to connect to PostgreSQL database: Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+    at /home/harmeek/Dev/Tishya/social-network-backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async connectDB (/home/harmeek/Dev/Tishya/social-network-backend/src/utils/db.js:14:5)
+    at async startServer (/home/harmeek/Dev/Tishya/social-network-backend/src/server.js:35:5)
+[nodemon] app crashed - waiting for file changes before starting...
+^C
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cd 
+node_modules/ src/          
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cd 
+node_modules/ src/          
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ cd src/
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ sudo -u postgres psql -c "SHOW hba_file;"
+              hba_file               
+-------------------------------------
+ /etc/postgresql/16/main/pg_hba.conf
+(1 row)
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ sudo nano /path/to/pg_hba.conf
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ sudo nano /etc/postgresql/16/main/pg_hba.conf
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ sudo systemctl restart postgresql
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ npm run dev
+
+> social-network-backend@1.0.0 dev
+> nodemon src/server.js
+
+[nodemon] 3.1.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node src/server.js`
+Failed to connect to PostgreSQL database: Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+    at /home/harmeek/Dev/Tishya/social-network-backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async connectDB (/home/harmeek/Dev/Tishya/social-network-backend/src/utils/db.js:14:5)
+    at async startServer (/home/harmeek/Dev/Tishya/social-network-backend/src/server.js:35:5)
+[nodemon] app crashed - waiting for file changes before starting...
+^C
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ psql -h localhost -U harmeek -d social_network_db
+Password for user harmeek: 
+psql (16.4 (Ubuntu 16.4-0ubuntu0.24.04.2))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: off)
+Type "help" for help.
+
+social_network_db=# ^C
+social_network_db=# \q
+harmeek@marcos:~/Dev/Tishya/social-network-backend/src$ npm run dev
+
+> social-network-backend@1.0.0 dev
+> nodemon src/server.js
+
+[nodemon] 3.1.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node src/server.js`
+Failed to connect to PostgreSQL database: Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+    at /home/harmeek/Dev/Tishya/social-network-backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async connectDB (/home/harmeek/Dev/Tishya/social-network-backend/src/utils/db.js:14:5)
+    at async startServer (/home/harmeek/Dev/Tishya/social-network-backend/src/server.js:35:5)
+[nodemon] app crashed - waiting for file changes before starting...
+rs
+[nodemon] starting `node src/server.js`
+Failed to connect to PostgreSQL database: Error: SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string
+    at /home/harmeek/Dev/Tishya/social-network-backend/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async connectDB (/home/harmeek/Dev/Tishya/social-network-backend/src/utils/db.js:14:5)
+    at async startServer (/home/harmeek/Dev/Tishya/social-network-backend/src/server.js:35:5)
+[nodemon] app crashed - waiting for file changes before starting...
+rs
+[nodemon] starting `node src/server.js`
+Connected to PostgreSQL database
+info: Connected to PostgreSQL database {"timestamp":"2024-10-01T07:00:10.493Z"}
+info: Server running on http://localhost:4000/graphql {"timestamp":"2024-10-01T07:00:10.545Z"}
+
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ sudo -u postgres psql -c "\du harmeek"
+     List of roles
+ Role name | Attributes 
+-----------+------------
+ harmeek   | Superuser
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ sudo tail -f /var/log/postgresql/postgresql-16-main.log
+2024-10-01 12:28:11.554 IST [22362] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2024-10-01 12:28:11.558 IST [22365] LOG:  database system was shut down at 2024-10-01 12:28:11 IST
+2024-10-01 12:28:11.563 IST [22362] LOG:  database system is ready to accept connections
+2024-10-01 12:33:11.596 IST [22363] LOG:  checkpoint starting: time
+2024-10-01 12:33:11.608 IST [22363] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.002 s, total=0.013 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/1968468, redo lsn=0/1968430
+2024-10-01 12:33:59.396 IST [24448] harmeek@social_network_db ERROR:  relation "users" does not exist at character 15
+2024-10-01 12:33:59.396 IST [24448] harmeek@social_network_db STATEMENT:  SELECT * FROM users WHERE username = $1 OR email = $2
+2024-10-01 12:34:14.784 IST [22424] harmeek@social_network_db LOG:  could not receive data from client: Connection reset by peer
+2024-10-01 13:03:12.125 IST [22363] LOG:  checkpoint starting: time
+2024-10-01 13:03:12.237 IST [22363] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.002 s, total=0.112 s; sync files=2, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=1 kB; lsn=0/1968A08, redo lsn=0/19689D0
+^C
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -h localhost -U harmeek -d social_network_db
+Password for user harmeek: 
+psql (16.4 (Ubuntu 16.4-0ubuntu0.24.04.2))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: off)
+Type "help" for help.
+
+social_network_db=# \dl
+      Large objects
+ ID | Owner | Description 
+----+-------+-------------
+(0 rows)
+
+social_network_db=# \u
+invalid command \u
+Try \? for help.
+social_network_db=# help
+You are using psql, the command-line interface to PostgreSQL.
+Type:  \copyright for distribution terms
+       \h for help with SQL commands
+       \? for help with psql commands
+       \g or terminate with semicolon to execute query
+       \q to quit
+social_network_db=# \du
+social_network_db=# CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  profile_picture VARCHAR(255),
+  bio TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS projects (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+);PRIMARY KEY (project_id, user_id)NE DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+social_network_db=# \q
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+d20f765b30f54c939d1e4f0b6d0a9d3b963dd88ef9cfa6f0035c0a503acaed4ea232488a6c04cd1d335f32147aa63e2edb5931e8467cce62a33d5b69ce690330
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ ^C
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -h localhost -U harmeek -d social_network_db -c "SELECT current_user, current_database();"
+Password for user harmeek: 
+ current_user | current_database  
+--------------+-------------------
+ harmeek      | social_network_db
+(1 row)
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -h localhost -U harmeek -d social_network_db -c "\dt"
+Password for user harmeek: 
+                List of relations
+ Schema |         Name          | Type  |  Owner  
+--------+-----------------------+-------+---------
+ public | comments              | table | harmeek
+ public | institutions          | table | harmeek
+ public | posts                 | table | harmeek
+ public | project_collaborators | table | harmeek
+ public | projects              | table | harmeek
+ public | user_connections      | table | harmeek
+ public | user_institutions     | table | harmeek
+ public | users                 | table | harmeek
+(8 rows)
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ node src/utils/runMigrations.js
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -h localhost -U harmeek -d social_network_db -c "\dt"
+Password for user harmeek: 
+                List of relations
+ Schema |         Name          | Type  |  Owner  
+--------+-----------------------+-------+---------
+ public | comments              | table | harmeek
+ public | institutions          | table | harmeek
+ public | posts                 | table | harmeek
+ public | project_collaborators | table | harmeek
+ public | projects              | table | harmeek
+ public | user_connections      | table | harmeek
+ public | user_institutions     | table | harmeek
+ public | users                 | table | harmeek
+(8 rows)
+
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ psql -h localhost -U harmeek -l
+Password for user harmeek: 
+harmeek@marcos:~/Dev/Tishya/social-network-backend$ 
