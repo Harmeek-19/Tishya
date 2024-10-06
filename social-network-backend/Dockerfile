@@ -10,8 +10,11 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application code
-COPY . .
+# Copy the entire src directory
+COPY src ./src
+
+# Copy any other necessary files (e.g., .env, if you're using it)
+COPY .env* ./
 
 # Expose the port the app runs on
 EXPOSE 4000
