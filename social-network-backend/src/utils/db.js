@@ -2,10 +2,10 @@ const { Pool } = require('pg');
 require('dotenv').config({ path: require('path').resolve(__dirname, '../../.env') });
 
 const pool = new Pool({
-  user: process.env.DB_USER || 'your_db_user',
+  user: process.env.DB_USER || 'harmeek',
   host: process.env.DB_HOST || 'db', // 'db' is the service name in docker-compose
-  database: process.env.DB_NAME || 'your_db_name',
-  password: process.env.DB_PASSWORD || 'your_db_password',
+  database: process.env.DB_NAME || 'social_network_db',
+  password: process.env.DB_PASSWORD || 'itsokay',
   port: process.env.DB_PORT || 5432,
 });
 
