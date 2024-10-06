@@ -34,13 +34,15 @@ social-network-backend/
 ## 4. Setup and Installation
 1. Clone the repository:
    
-   git clone https://github.com/Harmeek-19/Tishya.git
+   git clone https://github.com/your-username/social-network-backend.git
    cd social-network-backend
    
-2. Install dependencies:
 
-npm install
+2. Install dependencies:
    
+   npm install
+   
+
 3. Set up environment variables (see section 6).
 
 4. Install Docker and Docker Compose if not already installed.
@@ -76,7 +78,7 @@ The server will start on `http://localhost:4000/graphql`.
 The GraphQL API provides a single endpoint at `/graphql`. Use GraphQL queries and mutations to interact with the API.
 
 Example query:
-  graphql
+graphql
 query {
   getUser(id: "1") {
     username
@@ -115,13 +117,19 @@ Authorization: Bearer <your_token_here>
 - Joining institutions
 - Adding collaborators to projects
 
+## 14. Search Functionality
+(If implemented) Describe how users can search for other users, projects, or institutions.
+
+## 15. Pagination
+(If implemented) Describe how pagination works for lists of posts, users, etc.
+
 ## 16. Error Handling and Logging
 Errors are logged using Winston. Check `error.log` and `combined.log` for detailed logs.
 
 ## 17. Testing
 Run tests with:
-
 npm test
+
 
 ## 18. Deployment
 The application is containerized and can be deployed to any Docker-compatible hosting service.
@@ -147,4 +155,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - Docker team
 
 ## 23. Contact
-Mail - harmeek1929@gmail.com
+Mail-harmeek1929@gmail.com
