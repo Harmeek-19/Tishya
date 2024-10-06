@@ -12,7 +12,7 @@ This project is a robust backend system for a social networking platform, design
 - Docker
 
 ## 3. Project Structure
-
+'''
 social-network-backend/
 ├── src/
 │   ├── middleware/
@@ -29,7 +29,7 @@ social-network-backend/
 ├── Dockerfile
 ├── package.json
 └── README.md
-
+'''
 
 ## 4. Setup and Installation
 1. Clone the repository:
