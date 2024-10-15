@@ -7,6 +7,14 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
+# If by any chance not working for any of the OS use this: 
+
+## Copy the entire src directory
+# COPY src ./src
+
+## Copy any other necessary files (e.g., .env, if you're using it)
+# COPY .env* ./
+
 # Install dependencies
 RUN npm install
 
